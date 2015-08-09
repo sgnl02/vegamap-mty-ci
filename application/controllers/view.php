@@ -5,7 +5,7 @@
  * @date 05-08-2015
  *
  * Created: Wed 05-08-2015, 18:45:51 (:-0500)
- * Last modified: Thu 06-08-2015, 18:59:52 (-0500)
+ * Last modified: Sun 09-08-2015, 15:16:06 (-0500)
  */
 ?>
 <?php
@@ -15,31 +15,61 @@ class view extends CI_Controller {
 
 	public $data;
 
-	public function main()
-	{
+	public function __construct() {
+		parent::__construct();	
+
 		$this->load->model('View_model');
-		$data['arrayResult'] = $this->View_model->main();
-		$this->load->view('main', $data);
 	}
 
-	public function place()
-	{
-		$this->load->model('View_model');
+	public function main() {
+		$menu['arrayMenuFoodType'] = $this->View_model->menuFoodType();
+		$menu['arrayMenuDietType'] = $this->View_model->menuDietType();
+		$menu['arrayMenuPlaces'] = $this->View_model->menuPlaces();
+		$data['arrayResult'] = $this->View_model->main();
+
+		$this->load->view('header', $menu);
+		$this->load->view('main-breadcrumb', $data);
+		$this->load->view('map', $data);
+		$this->load->view('main-sidemenu');
+		$this->load->view('footer');
+	}
+
+	public function place() {
+		$menu['arrayMenuFoodType'] = $this->View_model->menuFoodType();
+		$menu['arrayMenuDietType'] = $this->View_model->menuDietType();
+		$menu['arrayMenuPlaces'] = $this->View_model->menuPlaces();
 		$data['arrayResult'] = $this->View_model->place();
-		$this->load->view('place', $data);
+
+		$this->load->view('header', $menu);
+		$this->load->view('place-breadcrumb', $data);
+		$this->load->view('map', $data);
+		$this->load->view('place-sidemenu');
+		$this->load->view('footer');
 	}
 	
-	public function option()
-	{
-		$this->load->model('View_model');
+	public function option() {
+		$menu['arrayMenuFoodType'] = $this->View_model->menuFoodType();
+		$menu['arrayMenuDietType'] = $this->View_model->menuDietType();
+		$menu['arrayMenuPlaces'] = $this->View_model->menuPlaces();
 		$data['arrayResult'] = $this->View_model->option();
-		$this->load->view('option', $data);
+
+		$this->load->view('header', $menu);
+		$this->load->view('option-breadcrumb', $data);
+		$this->load->view('map', $data);
+		$this->load->view('option-sidemenu');
+		$this->load->view('footer');
 	}
 
-	public function type()
-	{
-		$this->load->model('View_model');
+	public function type() {
+		$menu['arrayMenuFoodType'] = $this->View_model->menuFoodType();
+		$menu['arrayMenuDietType'] = $this->View_model->menuDietType();
+		$menu['arrayMenuPlaces'] = $this->View_model->menuPlaces();
 		$data['arrayResult'] = $this->View_model->type();
-		$this->load->view('type', $data);
+
+		$this->load->view('header', $menu);
+		$this->load->view('type-breadcrumb', $data);
+		$this->load->view('map', $data);
+		$this->load->view('type-sidemenu');
+		$this->load->view('footer');
 	}
 }
