@@ -5,13 +5,13 @@
  * @date 05-08-2015
  *
  * Created: Wed 05-08-2015, 18:45:51 (:-0500)
- * Last modified: Sun 09-08-2015, 15:16:06 (-0500)
+ * Last modified: Sun 09-08-2015, 18:49:32 (-0500)
  */
 ?>
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class view extends CI_Controller {
+class View extends CI_Controller {
 
 	public $data;
 

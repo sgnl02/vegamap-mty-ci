@@ -5,7 +5,7 @@
  * @date 07-08-2015
  *
  * Created: Fri 07-08-2015, 16:44:38 (:-0500)
- * Last modified: Sun 09-08-2015, 15:18:56 (-0500)
+ * Last modified: Mon 10-08-2015, 10:22:21 (-0500)
  */
 ?>
 <!doctype>
@@ -37,6 +37,7 @@
 		.information p { margin-bottom: 0 !important; }
 		.information .button-group { margin-top: 20px; }
 		.indent { display: block; margin-left: 20px; }
+		h1>sup { position: absolute; margin-top: -8px !important; }
 	</style>
 
 </head>
@@ -51,13 +52,13 @@
       </section>
 
       <section class="middle tab-bar-section">
-        <h1 class="title"><i class="fa fa-leaf"></i> VegaMap</h1>
+        <h1 class="title"><i class="fa fa-leaf"></i> VegaMap<sup>1.1.1</sup></h1>
       </section>
     </nav>
 
     <aside class="left-off-canvas-menu">
       <ul class="off-canvas-list">
-        <li><label>VegaMap</label></li>
+        <li><label>VegaMap<sup>1.1.1</sup></label></li>
         <li class="has-submenu"><a href="#">Tipo de comida</a>
             <ul class="left-submenu">
                 <li class="back"><a href="#">Regresar</a></li>
