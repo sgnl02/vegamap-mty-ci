@@ -5,7 +5,7 @@
  * @date 05-08-2015
  *
  * Created: Wed 05-08-2015, 18:45:51 (:-0500)
- * Last modified: Sun 09-08-2015, 18:49:32 (-0500)
+ * Last modified: Thu 13-08-2015, 18:08:32 (-0500)
  */
 ?>
 <?php
@@ -18,6 +18,7 @@ class View extends CI_Controller {
 	public function __construct() {
 		parent::__construct();	
 
+		$this->load->library('session');
 		$this->load->model('View_model');
 	}
 
@@ -34,11 +35,38 @@ class View extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function error() {
+		$menu['arrayMenuFoodType'] = $this->View_model->menuFoodType();
+		$menu['arrayMenuDietType'] = $this->View_model->menuDietType();
+		$menu['arrayMenuPlaces'] = $this->View_model->menuPlaces();
+		$data['arrayResult'] = $this->View_model->main();
+
+		$this->load->view('header', $menu);
+		$this->load->view('main-breadcrumb', $data);
+		$this->load->view('map', $data);
+		$this->load->view('error-sidemenu');
+		$this->load->view('footer');
+	}
+
+	public function addplace() {
+		$menu['arrayMenuFoodType'] = $this->View_model->menuFoodType();
+		$menu['arrayMenuDietType'] = $this->View_model->menuDietType();
+		$menu['arrayMenuPlaces'] = $this->View_model->menuPlaces();
+		$data['arrayResult'] = $this->View_model->main();
+
+		$this->load->view('header', $menu);
+		$this->load->view('main-breadcrumb', $data);
+		$this->load->view('addplace-map');
+		$this->load->view('addplace-sidemenu');
+		$this->load->view('footer');
+	}
+
 	public function place() {
 		$menu['arrayMenuFoodType'] = $this->View_model->menuFoodType();
 		$menu['arrayMenuDietType'] = $this->View_model->menuDietType();
 		$menu['arrayMenuPlaces'] = $this->View_model->menuPlaces();
 		$data['arrayResult'] = $this->View_model->place();
+		$this->load->library('session');
 
 		$this->load->view('header', $menu);
 		$this->load->view('place-breadcrumb', $data);

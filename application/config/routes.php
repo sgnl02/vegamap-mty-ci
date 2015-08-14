@@ -50,8 +50,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'view/main';
-$route['view/place/:any'] = 'view/place/$1';
-$route['view/option/:any'] = 'view/option/$1';
-$route['view/type/:any'] = 'view/type/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['error'] = 'view/error';
+
+$route['add/place'] = 'view/addplace';
+$route['validate/place'] = 'action/validateplace';
+$route['insert/place'] = 'action/insertplace';
+$route['view/place/:any'] = 'view/place/$1';
+
+$route['view/option/:any'] = 'view/option/$1';
+
+$route['view/type/:any'] = 'view/type/$1';

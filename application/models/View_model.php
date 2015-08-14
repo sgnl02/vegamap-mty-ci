@@ -5,7 +5,7 @@
  * @date 06-08-2015
  *
  * Created: Thu 06-08-2015, 12:58:47 (:-0500)
- * Last modified: Sun 09-08-2015, 18:47:42 (-0500)
+ * Last modified: Thu 13-08-2015, 17:04:46 (-0500)
  */
 ?>
 <?php
@@ -111,7 +111,7 @@ class View_model extends CI_Model {
 		/* Return all kinds of food, because I'm feeling hungry */
 
 		$this->db->distinct();
-		$this->db->select(array('id_category', 'category', 'slug_categories'));
+		$this->db->select(array('id_category', 'category', 'slug_categories', 'id_categories'));
 		$this->db->from('places');
 		$this->db->join('categories', 'categories.id_categories = places.id_category', 'left');
 		$this->db->order_by("category", "asc");
@@ -122,7 +122,7 @@ class View_model extends CI_Model {
 	public function menuDietType() {
 		/* Return all the diets */
 
-		$this->db->select(array('option', 'slug_options'));
+		$this->db->select(array('option', 'slug_options', 'id_options'));
 		$this->db->from('options');
 		$this->db->order_by("option", "asc");
 

@@ -5,7 +5,7 @@
  * @date 07-08-2015
  *
  * Created: Fri 07-08-2015, 16:44:38 (:-0500)
- * Last modified: Mon 10-08-2015, 10:22:21 (-0500)
+ * Last modified: Fri 14-08-2015, 12:24:51 (-0500)
  */
 ?>
 <!doctype>
@@ -21,23 +21,41 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 	<style>
-		google-map {
+
+		#map-canvas, google-map {
 			height: 100%;
 			position: fixed;
 			float: left;
-			width: 80% !important;
+			width: 100%;
 		}
 
 		.inner-wrap { height: 100%; }
 		.tab-bar .menu-icon { z-index: 2; }
 		.menu { margin-left: 10px; }
 		.breadcrumbs { margin-bottom: 0; }
-		.information-wrap { position: relative; width: 25%; float: right; margin-right: 10px; }
-		.information { float: left; position: fixed; width: 25%; height: 95%; margin-right: 20px; background: white; z-index: 400; overflow-y: auto; padding: 15px; padding-bottom: 200px; }
+		.information-wrap { position: relative; width: 300px; float: right; }
+		.information { float: left; position: fixed; width: 300px; height: 95%; margin-right: 20px; background: white; z-index: 400; overflow-y: auto; padding: 15px; padding-bottom: 200px; }
 		.information p { margin-bottom: 0 !important; }
 		.information .button-group { margin-top: 20px; }
 		.indent { display: block; margin-left: 20px; }
 		h1>sup { position: absolute; margin-top: -8px !important; }
+		.title-color { color: #accf1e; }
+		.error--facebook { margin-top: -16px !important; }
+		.optional { padding-top: 20px; border-top: 2px solid black; }
+
+		@media (max-width: 600px) {
+			google-map { 
+				position: relative !important; 
+			}
+
+			.information-wrap { width: 100%; margin-right: 0; }
+			.information { height: 200px !important; padding-bottom: 50px; }
+
+		  .information, .information-wrap {
+				display: block;
+				width: 100% !important;
+		  }
+		}
 	</style>
 
 </head>
@@ -52,7 +70,7 @@
       </section>
 
       <section class="middle tab-bar-section">
-        <h1 class="title"><i class="fa fa-leaf"></i> VegaMap<sup>1.1.1</sup></h1>
+        <h1 class="title"><i class="fa fa-leaf title-color"></i> VegaMap<sup>1.1.1</sup></h1>
       </section>
     </nav>
 
@@ -104,6 +122,7 @@
 					<?php } ?>
             </ul>
         </li>
-
+		  <li><a href="<?php echo base_url('add/place/'); ?>">Add place</a></li>
+        <li><a href="#" data-reveal-id="aboutModal">Sobre</a></li>
       </ul>
     </aside>

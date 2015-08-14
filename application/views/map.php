@@ -5,12 +5,13 @@
  * @date 04-08-2015
  *
  * Created: Tue 04-08-2015, 18:30:14 (:-0500)
- * Last modified: Sun 09-08-2015, 18:47:43 (-0500)
+ * Last modified: Mon 10-08-2015, 20:46:25 (-0500)
  */
 ?>
 
+<div class="map">
 <?php $numberOfItems = 0; ?>
-<google-map latitude="25.6488126" longitude="-100.3030789" disableDefaultUI="false" fit-to-markers zoom="15" style="width:100%; height:100%">
+<google-map latitude="25.6488126" longitude="-100.3030789" disableDefaultUI="false" fit-to-markers zoom="15">
 	<?php foreach($arrayResult as $singleResult) { ?>
 		<?php $numberOfItems++; ?>
 
@@ -29,3 +30,4 @@
 		</google-map-marker>
 	<?php } ?>
 </google-map>
+</div>
