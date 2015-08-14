@@ -5,7 +5,7 @@
  * @date 09-08-2015
  *
  * Created: Sun 09-08-2015, 11:22:12 (:-0500)
- * Last modified: Fri 14-08-2015, 17:00:44 (-0500)
+ * Last modified: Fri 14-08-2015, 18:36:42 (-0500)
  */
 ?>
 
@@ -160,6 +160,7 @@
 						<?php echo $arrayValidationPlace['error']['street']; ?>
 					</small>
 				<?php } ?>
+			</div>
 		</div>
 		<div class="row collapse">
 			<div class="large-12 columns">
@@ -200,7 +201,9 @@
 			<div class="large-6 columns
 				<?php if(isset($arrayValidationPlace['error']['primaryopenhoursfrom'])) { 
 				echo 'error'; } ?>">
-	      <label for="name">Hours open from <small>Required</small></label>
+			<label for="name"
+
+			>Hours open from <small>Required</small></label>
 			<input 
 				value="<?php if(isset($arrayValidationPlace['primaryopenhoursfrom'])) { 
 						echo $arrayValidationPlace['primaryopenhoursfrom']; 
@@ -220,7 +223,7 @@
 				echo 'error'; } ?>">
 	      <label for="name">Minutes open from <small>Required</small></label>
 			<input 
-				value="<?php if(isset($arrayValidationPlace['primarminutesminutesfrom'])) { 
+				value="<?php if(isset($arrayValidationPlace['primaryopenminutesfrom'])) { 
 						echo $arrayValidationPlace['primaryopenminutesfrom']; 
 					} ?>" 
 				type="text" 
@@ -288,7 +291,7 @@
 				echo 'error'; } ?>">
 	      <label for="name">Minutes open until <small>Required</small></label>
 			<input 
-				value="<?php if(isset($arrayValidationPlace['primarminutesminutesuntil'])) { 
+				value="<?php if(isset($arrayValidationPlace['primaryopenminutesuntil'])) { 
 						echo $arrayValidationPlace['primaryopenminutesuntil']; 
 					} ?>" 
 				type="text" 
@@ -582,7 +585,6 @@
 							<?php echo $arrayValidationPlace['error']['secondaryopenminutesuntil']; ?>
 						</small>
 					<?php } ?>
-			</div>
 			</div>
 			</div>
 		</div>

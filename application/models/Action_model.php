@@ -5,254 +5,258 @@
  * @date 13-08-2015
  *
  * Created: Thu 13-08-2015, 13:26:30 (:-0500)
- * Last modified: Fri 14-08-2015, 11:51:43 (-0500)
+ * Last modified: Fri 14-08-2015, 18:33:53 (-0500)
  */
 ?>
 <?php
 class Action_model extends CI_Model {
-	private $arrayResult;
-
-	function __autoload() {
-		parent::__construct();
-		$this->load->database();
-	}
+	private $post;
+	private $arrayValidationPlace;
+	private $latitude;
+	private $longitude;
+	private $name;
+	private $street;
+	private $type;
+	private $option;
+	private $createslug;
+	private $insertplace;
+	private $page;
 
 	public function validatePlace() {
-		$post = $this->input->post();
+		$this->post = $this->input->post();
+		$this->arrayValidationPlace['action']['new'] = "place";
 
-		$arrayValidationPlace['action']['new'] = "place";
-
-		if(isset($post['latitude'])
-		&& $post['latitude']) { 
-			$arrayValidationPlace['latitude'] = $post['latitude']; 
+		if(isset($this->post['latitude'])
+		&& $this->post['latitude']) { 
+			$this->arrayValidationPlace['latitude'] = $this->post['latitude']; 
 		} else { 
-			$arrayValidationPlace['latitude'] = ''; 
-			$arrayValidationPlace['error']['latitude'] = 'Latitude is empty'; 
+			$this->arrayValidationPlace['latitude'] = ''; 
+			$this->arrayValidationPlace['error']['latitude'] = 'Latitude is empty'; 
 		}
 
-		if(isset($post['longitude'])
-		&& $post['longitude']) { 
-			$arrayValidationPlace['longitude'] = $post['longitude']; 
+		if(isset($this->post['longitude'])
+		&& $this->post['longitude']) { 
+			$this->arrayValidationPlace['longitude'] = $this->post['longitude']; 
 		} else { 
-			$arrayValidationPlace['longitude'] = ''; 
-			$arrayValidationPlace['error']['longitude'] = 'Latitude is empty'; 
+			$this->arrayValidationPlace['longitude'] = ''; 
+			$this->arrayValidationPlace['error']['longitude'] = 'Latitude is empty'; 
 		}
 
-		if(isset($post['name'])
-		&& $post['name']) { 
-			$arrayValidationPlace['name'] = $post['name']; 
+		if(isset($this->post['name'])
+		&& $this->post['name']) { 
+			$this->arrayValidationPlace['name'] = $this->post['name']; 
 		} else { 
-			$arrayValidationPlace['name'] = ''; 
-			$arrayValidationPlace['error']['name'] = 'Name is empty'; 
+			$this->arrayValidationPlace['name'] = ''; 
+			$this->arrayValidationPlace['error']['name'] = 'Name is empty'; 
 		}
 
-		if(isset($post['street'])
-		&& $post['street']) { 
-			$arrayValidationPlace['street'] = $post['street']; 
+		if(isset($this->post['street'])
+		&& $this->post['street']) { 
+			$this->arrayValidationPlace['street'] = $this->post['street']; 
 		} else { 
-			$arrayValidationPlace['street'] = ''; 
-			$arrayValidationPlace['error']['street'] = 'Street is empty'; 
+			$this->arrayValidationPlace['street'] = ''; 
+			$this->arrayValidationPlace['error']['street'] = 'Street is empty'; 
 		}
 
-		if(isset($post['type'])
-		&& $post['type']) { 
-			$arrayValidationPlace['type'] = $post['type']; 
+		if(isset($this->post['type'])
+		&& $this->post['type']) { 
+			$this->arrayValidationPlace['type'] = $this->post['type']; 
 		} else { 
-			$arrayValidationPlace['type'] = ''; 
-			$arrayValidationPlace['error']['type'] = 'Type is empty'; 
+			$this->arrayValidationPlace['type'] = ''; 
+			$this->arrayValidationPlace['error']['type'] = 'Type is empty'; 
 		}
 
-		if(isset($post['option'])
-		&& $post['option']) { 
-			$arrayValidationPlace['option'] = $post['option']; 
+		if(isset($this->post['option'])
+		&& $this->post['option']) { 
+			$this->arrayValidationPlace['option'] = $this->post['option']; 
 		} else { 
-			$arrayValidationPlace['option'] = ''; 
-			$arrayValidationPlace['error']['option'] = 'Option is empty'; 
-		}
-
-		/*
-		if(isset($post['email'])
-		&& $post['email']) { 
-			$arrayValidationPlace['email'] = $post['email']; 
-		} else { 
-			$arrayValidationPlace['email'] = ''; 
-			$arrayValidationPlace['error']['email'] = 'Email is empty'; 
-		}
-		
-		
-		if(isset($post['primaryphone'])
-		&& $post['primaryphone']) { 
-			$arrayValidationPlace['primaryphone'] = $post['primaryphone']; 
-		} else { 
-			$arrayValidationPlace['primaryphone'] = ''; 
-			$arrayValidationPlace['error']['primaryphone'] = 'Primary phone is empty'; 
-		}
-
-		if(isset($post['secondaryphone'])
-		&& $post['secondaryphone']) { 
-			$arrayValidationPlace['secondaryphone'] = $post['secondaryphone']; 
-		} else { 
-			$arrayValidationPlace['secondaryphone'] = ''; 
-			$arrayValidationPlace['error']['secondaryphone'] = 'Secondary phone is empty'; 
-		}
-
-		if(isset($post['website'])
-		&& $post['website']) { 
-			$arrayValidationPlace['website'] = $post['website']; 
-		} else { 
-			$arrayValidationPlace['website'] = ''; 
-			$arrayValidationPlace['error']['website'] = 'Website is empty'; 
-		}
-
-		if(isset($post['facebook'])
-		&& $post['facebook']) { 
-			$arrayValidationPlace['facebook'] = $post['facebook']; 
-		} else { 
-			$arrayValidationPlace['facebook'] = ''; 
-			$arrayValidationPlace['error']['facebook'] = 'Facebook is empty'; 
-		}
-		*/
-
-		if(isset($post['primaryopendaysfrom'])
-		&& $post['primaryopendaysfrom']) { 
-			$arrayValidationPlace['primaryopendaysfrom'] = $post['primaryopendaysfrom']; 
-		} else { 
-			$arrayValidationPlace['primaryopendaysfrom'] = 'ldlfkdjfl'; 
-			$arrayValidationPlace['error']['primaryopendaysfrom'] = 'Primary open days from is empty'; 
-		}
-
-		if(isset($post['primaryopendaysuntil'])
-		&& $post['primaryopendaysuntil']) { 
-			$arrayValidationPlace['primaryopendaysuntil'] = $post['primaryopendaysuntil']; 
-		} else { 
-			$arrayValidationPlace['primaryopendaysuntil'] = ''; 
-			$arrayValidationPlace['error']['primaryopendaysuntil'] = 'Primary open days until is empty'; 
-		}
-
-		if(isset($post['primaryopenhoursfrom'])
-		&& $post['primaryopenhoursfrom']) { 
-			$arrayValidationPlace['primaryopenhoursfrom'] = $post['primaryopenhoursfrom']; 
-		} else { 
-			$arrayValidationPlace['primaryopenhoursfrom'] = ''; 
-			$arrayValidationPlace['error']['primaryopenhoursfrom'] = 'Primary open hours from is empty'; 
-		}
-
-		if(isset($post['primaryopenhoursuntil'])
-		&& $post['primaryopenhoursuntil']) { 
-			$arrayValidationPlace['primaryopenhoursuntil'] = $post['primaryopenhoursuntil']; 
-		} else { 
-			$arrayValidationPlace['primaryopenhoursuntil'] = ''; 
-			$arrayValidationPlace['error']['primaryopenhoursuntil'] = 'Primary open hours until is empty'; 
-		}
-
-		if(isset($post['primaryopenminutesfrom'])
-		&& $post['primaryopenminutesfrom']) { 
-			$arrayValidationPlace['primaryopenminutesfrom'] = $post['primaryopenminutesfrom']; 
-		} else { 
-			$arrayValidationPlace['primaryopenminutesfrom'] = ''; 
-			$arrayValidationPlace['error']['primaryopenminutesfrom'] = 'Primary open minutes from is empty'; 
-		}
-
-		if(isset($post['primaryopenminutesuntil'])
-		&& $post['primaryopenminutesuntil']) { 
-			$arrayValidationPlace['primaryopenminutesuntil'] = $post['primaryopenminutesuntil']; 
-		} else { 
-			$arrayValidationPlace['primaryopenminutesuntil'] = ''; 
-			$arrayValidationPlace['error']['primaryopenminutesuntil'] = 'Primary open minutes until is empty'; 
+			$this->arrayValidationPlace['option'] = ''; 
+			$this->arrayValidationPlace['error']['option'] = 'Option is empty'; 
 		}
 
 		/*
-		if(isset($post['secondaryopendaysfrom'])
-		&& $post['secondaryopendaysfrom']) { 
-			$arrayValidationPlace['secondaryopendaysfrom'] = $post['secondaryopendaysfrom']; 
+		if(isset($this->post['email'])
+		&& $this->post['email']) { 
+			$this->arrayValidationPlace['email'] = $this->post['email']; 
 		} else { 
-			$arrayValidationPlace['secondaryopendaysfrom'] = ''; 
-			$arrayValidationPlace['error']['secondaryopendaysfrom'] = 'Secondary open days from is empty'; 
+			$this->arrayValidationPlace['email'] = ''; 
+			$this->arrayValidationPlace['error']['email'] = 'Email is empty'; 
+		}
+		
+		
+		if(isset($this->post['primaryphone'])
+		&& $this->post['primaryphone']) { 
+			$this->arrayValidationPlace['primaryphone'] = $this->post['primaryphone']; 
+		} else { 
+			$this->arrayValidationPlace['primaryphone'] = ''; 
+			$this->arrayValidationPlace['error']['primaryphone'] = 'Primary phone is empty'; 
 		}
 
-		if(isset($post['secondaryopendaysuntil'])
-		&& $post['secondaryopendaysuntil']) { 
-			$arrayValidationPlace['secondaryopendaysuntil'] = $post['secondaryopendaysuntil']; 
+		if(isset($this->post['secondaryphone'])
+		&& $this->post['secondaryphone']) { 
+			$this->arrayValidationPlace['secondaryphone'] = $this->post['secondaryphone']; 
 		} else { 
-			$arrayValidationPlace['secondaryopendaysuntil'] = ''; 
-			$arrayValidationPlace['error']['secondaryopendaysuntil'] = 'Primary open days until is empty'; 
+			$this->arrayValidationPlace['secondaryphone'] = ''; 
+			$this->arrayValidationPlace['error']['secondaryphone'] = 'Secondary phone is empty'; 
 		}
 
-		if(isset($post['secondaryopenhoursfrom'])
-		&& $post['secondaryopenhoursfrom']) { 
-			$arrayValidationPlace['secondaryopenhoursfrom'] = $post['secondaryopenhoursfrom']; 
+		if(isset($this->post['website'])
+		&& $this->post['website']) { 
+			$this->arrayValidationPlace['website'] = $this->post['website']; 
 		} else { 
-			$arrayValidationPlace['secondaryopenhoursfrom'] = ''; 
-			$arrayValidationPlace['error']['secondaryopenhoursfrom'] = 'Secondary open hours from is empty'; 
+			$this->arrayValidationPlace['website'] = ''; 
+			$this->arrayValidationPlace['error']['website'] = 'Website is empty'; 
 		}
 
-		if(isset($post['secondaryopenhoursuntil'])
-		&& $post['secondaryopenhoursuntil']) { 
-			$arrayValidationPlace['secondaryopenhoursuntil'] = $post['secondaryopenhoursuntil']; 
+		if(isset($this->post['facebook'])
+		&& $this->post['facebook']) { 
+			$this->arrayValidationPlace['facebook'] = $this->post['facebook']; 
 		} else { 
-			$arrayValidationPlace['secondaryopenhoursuntil'] = ''; 
-			$arrayValidationPlace['error']['secondaryopenhoursuntil'] = 'Secondary open hours until is empty'; 
+			$this->arrayValidationPlace['facebook'] = ''; 
+			$this->arrayValidationPlace['error']['facebook'] = 'Facebook is empty'; 
+		}
+		*/
+
+		if(isset($this->post['primaryopendaysfrom'])
+		&& $this->post['primaryopendaysfrom']) { 
+			$this->arrayValidationPlace['primaryopendaysfrom'] = $this->post['primaryopendaysfrom']; 
+		} else { 
+			$this->arrayValidationPlace['primaryopendaysfrom'] = 'ldlfkdjfl'; 
+			$this->arrayValidationPlace['error']['primaryopendaysfrom'] = 'Primary open days from is empty'; 
 		}
 
-		if(isset($post['secondaryopenminutesfrom'])
-		&& $post['secondaryopenminutesfrom']) { 
-			$arrayValidationPlace['secondaryopenminutesfrom'] = $post['secondaryopenminutesfrom']; 
+		if(isset($this->post['primaryopendaysuntil'])
+		&& $this->post['primaryopendaysuntil']) { 
+			$this->arrayValidationPlace['primaryopendaysuntil'] = $this->post['primaryopendaysuntil']; 
 		} else { 
-			$arrayValidationPlace['secondaryopenminutesfrom'] = ''; 
-			$arrayValidationPlace['error']['secondaryopenminutesfrom'] = 'Secondary open minutes from is empty'; 
+			$this->arrayValidationPlace['primaryopendaysuntil'] = ''; 
+			$this->arrayValidationPlace['error']['primaryopendaysuntil'] = 'Primary open days until is empty'; 
 		}
 
-		if(isset($post['secondaryopenminutesuntil'])
-		&& $post['secondaryopenminutesuntil']) { 
-			$arrayValidationPlace['secondaryopenminutesuntil'] = $post['secondaryopenminutesuntil']; 
+		if(isset($this->post['primaryopenhoursfrom'])
+		&& $this->post['primaryopenhoursfrom']) { 
+			$this->arrayValidationPlace['primaryopenhoursfrom'] = $this->post['primaryopenhoursfrom']; 
 		} else { 
-			$arrayValidationPlace['secondaryopenminutesuntil'] = ''; 
-			$arrayValidationPlace['error']['secondaryopenminutesuntil'] = 'Secondary open minutes until is empty'; 
+			$this->arrayValidationPlace['primaryopenhoursfrom'] = ''; 
+			$this->arrayValidationPlace['error']['primaryopenhoursfrom'] = 'Primary open hours from is empty'; 
+		}
+
+		if(isset($this->post['primaryopenhoursuntil'])
+		&& $this->post['primaryopenhoursuntil']) { 
+			$this->arrayValidationPlace['primaryopenhoursuntil'] = $this->post['primaryopenhoursuntil']; 
+		} else { 
+			$this->arrayValidationPlace['primaryopenhoursuntil'] = ''; 
+			$this->arrayValidationPlace['error']['primaryopenhoursuntil'] = 'Primary open hours until is empty'; 
+		}
+
+		if(isset($this->post['primaryopenminutesfrom'])
+		&& $this->post['primaryopenminutesfrom']) { 
+			$this->arrayValidationPlace['primaryopenminutesfrom'] = $this->post['primaryopenminutesfrom']; 
+		} else { 
+			$this->arrayValidationPlace['primaryopenminutesfrom'] = ''; 
+			$this->arrayValidationPlace['error']['primaryopenminutesfrom'] = 'Primary open minutes from is empty'; 
+		}
+
+		if(isset($this->post['primaryopenminutesuntil'])
+		&& $this->post['primaryopenminutesuntil']) { 
+			$this->arrayValidationPlace['primaryopenminutesuntil'] = $this->post['primaryopenminutesuntil']; 
+		} else { 
+			$this->arrayValidationPlace['primaryopenminutesuntil'] = ''; 
+			$this->arrayValidationPlace['error']['primaryopenminutesuntil'] = 'Primary open minutes until is empty'; 
+		}
+
+		/*
+		if(isset($this->post['secondaryopendaysfrom'])
+		&& $this->post['secondaryopendaysfrom']) { 
+			$this->arrayValidationPlace['secondaryopendaysfrom'] = $this->post['secondaryopendaysfrom']; 
+		} else { 
+			$this->arrayValidationPlace['secondaryopendaysfrom'] = ''; 
+			$this->arrayValidationPlace['error']['secondaryopendaysfrom'] = 'Secondary open days from is empty'; 
+		}
+
+		if(isset($this->post['secondaryopendaysuntil'])
+		&& $this->post['secondaryopendaysuntil']) { 
+			$this->arrayValidationPlace['secondaryopendaysuntil'] = $this->post['secondaryopendaysuntil']; 
+		} else { 
+			$this->arrayValidationPlace['secondaryopendaysuntil'] = ''; 
+			$this->arrayValidationPlace['error']['secondaryopendaysuntil'] = 'Primary open days until is empty'; 
+		}
+
+		if(isset($this->post['secondaryopenhoursfrom'])
+		&& $this->post['secondaryopenhoursfrom']) { 
+			$this->arrayValidationPlace['secondaryopenhoursfrom'] = $this->post['secondaryopenhoursfrom']; 
+		} else { 
+			$this->arrayValidationPlace['secondaryopenhoursfrom'] = ''; 
+			$this->arrayValidationPlace['error']['secondaryopenhoursfrom'] = 'Secondary open hours from is empty'; 
+		}
+
+		if(isset($this->post['secondaryopenhoursuntil'])
+		&& $this->post['secondaryopenhoursuntil']) { 
+			$this->arrayValidationPlace['secondaryopenhoursuntil'] = $this->post['secondaryopenhoursuntil']; 
+		} else { 
+			$this->arrayValidationPlace['secondaryopenhoursuntil'] = ''; 
+			$this->arrayValidationPlace['error']['secondaryopenhoursuntil'] = 'Secondary open hours until is empty'; 
+		}
+
+		if(isset($this->post['secondaryopenminutesfrom'])
+		&& $this->post['secondaryopenminutesfrom']) { 
+			$this->arrayValidationPlace['secondaryopenminutesfrom'] = $this->post['secondaryopenminutesfrom']; 
+		} else { 
+			$this->arrayValidationPlace['secondaryopenminutesfrom'] = ''; 
+			$this->arrayValidationPlace['error']['secondaryopenminutesfrom'] = 'Secondary open minutes from is empty'; 
+		}
+
+		if(isset($this->post['secondaryopenminutesuntil'])
+		&& $this->post['secondaryopenminutesuntil']) { 
+			$this->arrayValidationPlace['secondaryopenminutesuntil'] = $this->post['secondaryopenminutesuntil']; 
+		} else { 
+			$this->arrayValidationPlace['secondaryopenminutesuntil'] = ''; 
+			$this->arrayValidationPlace['error']['secondaryopenminutesuntil'] = 'Secondary open minutes until is empty'; 
 		}
 		*/
 		
-		return $arrayValidationPlace;
+		return $this->arrayValidationPlace;
 	}
 
 	public function insertPlace() {
-		$post = $this->input->post();
+		$this->post = $this->input->post();
 
-		$latitude = $post['latitude']; 
-		$longitude = $post['longitude']; 
-		$name = $post['name']; 
-		$street = $post['street']; 
-		$type = $post['type']; 
-		$option = $post['option']; 
+		$this->latitude = $this->post['latitude']; 
+		$this->longitude = $this->post['longitude']; 
+		$this->name = $this->post['name']; 
+		$this->street = $this->post['street']; 
+		$this->type = $this->post['type']; 
+		$this->option = $this->post['option']; 
 
-		$createslug = strtolower($name);
-   	$createslug = preg_replace('/[^[:alnum:]]/', ' ', $createslug);
-   	$createslug = preg_replace('/[[:space:]]+/', "-", $createslug);
-   	$slugplaces = trim($createslug, "-");
+		$this->createslug = strtolower($this->name);
+   	$this->createslug = preg_replace('/[^[:alnum:]]/', ' ', $this->createslug);
+   	$this->createslug = preg_replace('/[[:space:]]+/', "-", $this->createslug);
+   	$this->slugplaces = trim($this->createslug, "-");
 
-		$insertplace = "INSERT 
+		$this->insertplace = "INSERT 
 			INTO places (name, address, latitude, longitude, id_category, id_option, slug_places) 
 			VALUES(
-				".$this->db->escape($name)."
-				, ".$this->db->escape($street)."
-				, ".$this->db->escape($latitude)."
-				, ".$this->db->escape($longitude)."
-				, ".$this->db->escape($type)."
-				, ".$this->db->escape($option)."
-				, ".$this->db->escape($slugplaces)."
+				".$this->db->escape($this->name)."
+				, ".$this->db->escape($this->street)."
+				, ".$this->db->escape($this->latitude)."
+				, ".$this->db->escape($this->longitude)."
+				, ".$this->db->escape($this->type)."
+				, ".$this->db->escape($this->option)."
+				, ".$this->db->escape($this->slugplaces)."
 			)";
 
-		$this->db->query($insertplace);	
+		$this->db->query($this->insertplace);	
 
 		if($this->db->affected_rows()) {
-			$page = base_url('view/place/' . $slugplaces);
+			$this->page = base_url('view/place/' . $this->slugplaces);
 
-			$this->session->set_flashdata('message', $name . ' has been added to the map.');
-			redirect($page, 'location', 301);
+			$this->session->set_flashdata('message', $this->name . ' has been added to the map.');
+			redirect($this->page, 'location', 301);
 		} else {
-			$page = base_url('error');
+			$this->page = base_url('error');
 
 			$this->session->set_flashdata('message', 'Error submitting to database');
-			redirect($page, 'location', 301);
+			redirect($this->page, 'location', 301);
 		}
 	}
 }
