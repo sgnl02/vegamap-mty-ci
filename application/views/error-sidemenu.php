@@ -5,7 +5,7 @@
  * @date 09-08-2015
  *
  * Created: Sun 09-08-2015, 11:22:12 (:-0500)
- * Last modified: Thu 13-08-2015, 18:16:30 (-0500)
+ * Last modified: Sun 16-08-2015, 17:30:39 (-0500)
  */
 ?>
 
@@ -15,7 +15,7 @@
 
 	<?php if($this->session->flashdata('message')) { ?>
 		<div class="alert-box alert">
-		<?php echo $this->session->flashdata('message'); ?>
+		<?php echo html_escape($this->session->flashdata('message')); ?>
 		</div>
 	<?php } else { ?>
 		<a href="<?php echo base_url('/'); ?>">Return to the map.</a>
@@ -23,7 +23,7 @@
 		<?php 
 			$page = base_url('/');
 
-			redirect($page, 'location', 301); 
+			redirect(html_escape($page), 'location', 301); 
 		?>
 	<?php } ?>
 </div>

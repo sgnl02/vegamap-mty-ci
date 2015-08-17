@@ -5,7 +5,7 @@
  * @date 04-08-2015
  *
  * Created: Tue 04-08-2015, 18:30:14 (:-0500)
- * Last modified: Mon 10-08-2015, 20:46:25 (-0500)
+ * Last modified: Sun 16-08-2015, 17:40:07 (-0500)
  */
 ?>
 
@@ -16,15 +16,15 @@
 		<?php $numberOfItems++; ?>
 
 		<google-map-marker 
-			latitude="<?php echo $singleResult['latitude']; ?>"
-			longitude="<?php echo $singleResult['longitude']; ?>"
-			title="<?php echo $singleResult['name']; ?>"
-			icon="<?php echo base_url('assets/images/markers/number_') . "$numberOfItems" . ".png"; ?>"
-			name="<?php echo $singleResult['slug_places']; ?>">
-			<p><strong><?php echo $singleResult['name']; ?></strong></p>
-			<p><?php echo $singleResult['address']; ?></p>
+			latitude="<?php echo html_escape($singleResult['latitude']); ?>"
+			longitude="<?php echo html_escape($singleResult['longitude']); ?>"
+			title="<?php echo html_escape($singleResult['name']); ?>"
+			icon="<?php echo base_url('assets/images/markers/number_' . html_escape($numberOfItems) . ".png"); ?>"
+			name="<?php echo html_escape($singleResult['slug_places']); ?>">
+			<p><strong><?php echo html_escape($singleResult['name']); ?></strong></p>
+			<p><?php echo html_escape($singleResult['address']); ?></p>
 			<p><a href="<?php echo base_url('view/place/' 
-			. $singleResult['slug_places']); ?>">
+			. html_escape($singleResult['slug_places'])); ?>">
 				More information
 			</a></p>
 		</google-map-marker>

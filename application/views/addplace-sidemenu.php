@@ -5,13 +5,15 @@
  * @date 09-08-2015
  *
  * Created: Sun 09-08-2015, 11:22:12 (:-0500)
- * Last modified: Fri 14-08-2015, 18:36:42 (-0500)
+ * Last modified: Sun 16-08-2015, 17:28:55 (-0500)
  */
 ?>
 
 <div class="information-wrap">
 <div class="information">
 	<p><strong>New place</strong></p>
+
+	<?php var_dump($arrayValidationPlace); ?>
 
 	<?php 
 	if(isset($arrayValidationPlace['latitude'])
@@ -51,13 +53,13 @@
 		<input 
 			type="hidden" 
 			value="<?php if(isset($arrayValidationPlace['latitude'])) { 
-				echo $arrayValidationPlace['latitude']; } ?>" 
+				echo html_escape($arrayValidationPlace['latitude']); } ?>" 
 			id="latitude" 
 			name="latitude" 
 			placeholder="Latitude"/>
 		<input type="hidden" 
 			value="<?php if(isset($arrayValidationPlace['longitude'])) { 
-					echo $arrayValidationPlace['longitude']; 
+					echo html_escape($arrayValidationPlace['longitude']); 
 				} ?>" 
 			id="longitude" 
 			name="longitude" 
@@ -74,7 +76,7 @@
 	      <label for="name">Name <small>Required</small></label>
 			<input 
 				value="<?php if(isset($arrayValidationPlace['name'])) { 
-						echo $arrayValidationPlace['name']; 
+						echo html_escape($arrayValidationPlace['name']); 
 					} ?>" 
 				type="text" 
 				id="name" 
@@ -82,7 +84,7 @@
 				placeholder="Name"/>
 				<?php if(isset($arrayValidationPlace['error']['name'])) { ?>
 					<small class="error">
-						<?php echo $arrayValidationPlace['error']['name']; ?>
+						<?php echo html_escape($arrayValidationPlace['error']['name']); ?>
 					</small>
 				<?php } ?>
 		</div>
@@ -109,7 +111,7 @@
 								 selected
 							<?php } ?>
 							value="<?php echo $singleMenuFoodType['id_categories']; ?>">
-						<?php echo $singleMenuFoodType['category']; ?></option>
+						<?php echo html_escape($singleMenuFoodType['category']); ?></option>
 					<?php } ?>
 			</select>
 		</div>
@@ -136,7 +138,7 @@
 								 selected
 							<?php } ?>
 						value="<?php echo $singleMenuDietType['id_options']; ?>">
-						<?php echo $singleMenuDietType['option']; ?></option>
+						<?php echo html_escape($singleMenuDietType['option']); ?></option>
 					<?php } ?>
 			</select>
 			</div>
@@ -154,10 +156,10 @@
 				id="street" 
 				name="street" 
 				placeholder="Street"/><?php if(isset($arrayValidationPlace['street'])) { 
-						echo $arrayValidationPlace['street']; } ?></textarea>
+						echo html_escape($arrayValidationPlace['street']); } ?></textarea>
 				<?php if(isset($arrayValidationPlace['error']['street'])) { ?>
 					<small class="error">
-						<?php echo $arrayValidationPlace['error']['street']; ?>
+						<?php echo html_escape($arrayValidationPlace['error']['street']); ?>
 					</small>
 				<?php } ?>
 			</div>
@@ -206,7 +208,7 @@
 			>Hours open from <small>Required</small></label>
 			<input 
 				value="<?php if(isset($arrayValidationPlace['primaryopenhoursfrom'])) { 
-						echo $arrayValidationPlace['primaryopenhoursfrom']; 
+						echo html_escape($arrayValidationPlace['primaryopenhoursfrom']); 
 					} ?>" 
 				type="text" 
 				id="primaryopenhoursfrom" 
@@ -214,7 +216,7 @@
 				placeholder="Hours open from"/>
 				<?php if(isset($arrayValidationPlace['error']['primaryopenhoursfrom'])) { ?>
 					<small class="error">
-						<?php echo $arrayValidationPlace['error']['primaryopenhoursfrom']; ?>
+						<?php echo html_escape($arrayValidationPlace['error']['primaryopenhoursfrom']); ?>
 					</small>
 				<?php } ?>
 		</div>
@@ -224,7 +226,7 @@
 	      <label for="name">Minutes open from <small>Required</small></label>
 			<input 
 				value="<?php if(isset($arrayValidationPlace['primaryopenminutesfrom'])) { 
-						echo $arrayValidationPlace['primaryopenminutesfrom']; 
+						echo html_escape($arrayValidationPlace['primaryopenminutesfrom']); 
 					} ?>" 
 				type="text" 
 				id="primaryopenminutesfrom" 
@@ -232,7 +234,7 @@
 				placeholder="Minutes open from"/>
 				<?php if(isset($arrayValidationPlace['error']['primaryopenminutesfrom'])) { ?>
 					<small class="error">
-						<?php echo $arrayValidationPlace['error']['primaryopenminutesfrom']; ?>
+						<?php echo html_escape($arrayValidationPlace['error']['primaryopenminutesfrom']); ?>
 					</small>
 				<?php } ?>
 		</div>
@@ -274,7 +276,7 @@
 	      <label for="name">Hours open until <small>Required</small></label>
 			<input 
 				value="<?php if(isset($arrayValidationPlace['primaryopenhoursuntil'])) { 
-						echo $arrayValidationPlace['primaryopenhoursuntil']; 
+						echo html_escape($arrayValidationPlace['primaryopenhoursuntil']); 
 					} ?>" 
 				type="text" 
 				id="primaryopenhoursuntil" 
@@ -282,7 +284,7 @@
 				placeholder="Hours open until"/>
 				<?php if(isset($arrayValidationPlace['error']['primaryopenhoursuntil'])) { ?>
 					<small class="error">
-						<?php echo $arrayValidationPlace['error']['primaryopenhoursuntil']; ?>
+						<?php echo html_escape($arrayValidationPlace['error']['primaryopenhoursuntil']); ?>
 					</small>
 				<?php } ?>
 		</div>
@@ -292,7 +294,7 @@
 	      <label for="name">Minutes open until <small>Required</small></label>
 			<input 
 				value="<?php if(isset($arrayValidationPlace['primaryopenminutesuntil'])) { 
-						echo $arrayValidationPlace['primaryopenminutesuntil']; 
+						echo html_escape($arrayValidationPlace['primaryopenminutesuntil']); 
 					} ?>" 
 				type="text" 
 				id="primaryopenminutesuntil" 
@@ -300,7 +302,7 @@
 				placeholder="Minutes open until"/>
 				<?php if(isset($arrayValidationPlace['error']['primaryopenminutesuntil'])) { ?>
 					<small class="error">
-						<?php echo $arrayValidationPlace['error']['primaryopenminutesuntil']; ?>
+						<?php echo html_escape($arrayValidationPlace['error']['primaryopenminutesuntil']); ?>
 					</small>
 				<?php } ?>
 		</div>
@@ -319,7 +321,7 @@
 		      <label for="email">Email <small>Optional</small></label>
 				<input 
 					value="<?php if(isset($arrayValidationPlace['email'])) { 
-							echo $arrayValidationPlace['email']; 
+							echo html_escape($arrayValidationPlace['email']); 
 						} ?>" 
 					type="text" 
 					id="email" 
@@ -327,7 +329,7 @@
 					placeholder="Email"/>
 					<?php if(isset($arrayValidationPlace['error']['email'])) { ?>
 						<small class="error">
-							<?php echo $arrayValidationPlace['error']['email']; ?>
+							<?php echo html_escape($arrayValidationPlace['error']['email']); ?>
 						</small>
 					<?php } ?>
 			</div>
@@ -343,7 +345,7 @@
 		      <label for="primaryphone">Primary phone <small>Optional</small></label>
 				<input 
 					value="<?php if(isset($arrayValidationPlace['primaryphone'])) { 
-							echo $arrayValidationPlace['primaryphone']; 
+							echo html_escape($arrayValidationPlace['primaryphone']); 
 						} ?>" 
 					type="text" 
 					id="primaryphone" 
@@ -351,7 +353,7 @@
 					placeholder="Primary phone"/>
 					<?php if(isset($arrayValidationPlace['error']['primaryphone'])) { ?>
 						<small class="error">
-							<?php echo $arrayValidationPlace['error']['primaryphone']; ?>
+							<?php echo html_escape($arrayValidationPlace['error']['primaryphone']); ?>
 						</small>
 					<?php } ?>
 			</div>
@@ -367,7 +369,7 @@
 		      <label for="secondaryphone">Secondary phone <small>Optional</small></label>
 				<input 
 					value="<?php if(isset($arrayValidationPlace['secondaryphone'])) { 
-							echo $arrayValidationPlace['secondaryphone']; 
+							echo html_escape($arrayValidationPlace['secondaryphone']); 
 						} ?>" 
 					type="text" 
 					id="secondaryphone" 
@@ -375,7 +377,7 @@
 					placeholder="Secondary phone"/>
 					<?php if(isset($arrayValidationPlace['error']['secondaryphone'])) { ?>
 						<small class="error">
-							<?php echo $arrayValidationPlace['error']['secondaryphone']; ?>
+							<?php echo html_escape($arrayValidationPlace['error']['secondaryphone']); ?>
 						</small>
 					<?php } ?>
 			</div>
@@ -391,7 +393,7 @@
 		      <label for="website">Website <small>Optional</small></label>
 				<input 
 					value="<?php if(isset($arrayValidationPlace['website'])) { 
-							echo $arrayValidationPlace['website']; 
+							echo html_escape($arrayValidationPlace['website']); 
 						} ?>" 
 					type="text" 
 					id="website" 
@@ -399,7 +401,7 @@
 					placeholder="Website"/>
 					<?php if(isset($arrayValidationPlace['error']['website'])) { ?>
 						<small class="error">
-							<?php echo $arrayValidationPlace['error']['website']; ?>
+							<?php echo html_escape($arrayValidationPlace['error']['website']); ?>
 						</small>
 					<?php } ?>
 			</div>
@@ -441,7 +443,7 @@
 				<div class="large-12 columns">
 					<?php if(isset($arrayValidationPlace['error']['facebook'])) { ?>
 						<small class="error error--facebook">
-							<?php echo $arrayValidationPlace['error']['facebook']; ?>
+							<?php echo html_escape($arrayValidationPlace['error']['facebook']); ?>
 						</small>
 					<?php } ?>
 				</div>
@@ -488,7 +490,7 @@
 		      <label for="name">Hours open from <small>Optional</small></label>
 				<input 
 					value="<?php if(isset($arrayValidationPlace['secondaryopenhoursfrom'])) { 
-							echo $arrayValidationPlace['secondaryopenhoursfrom']; 
+							echo html_escape($arrayValidationPlace['secondaryopenhoursfrom']); 
 						} ?>" 
 					type="text" 
 					id="secondaryopenhoursfrom" 
@@ -496,7 +498,7 @@
 					placeholder="Hours open from"/>
 					<?php if(isset($arrayValidationPlace['error']['secondaryopenhoursfrom'])) { ?>
 						<small class="error">
-							<?php echo $arrayValidationPlace['error']['secondaryopenhoursfrom']; ?>
+							<?php echo html_escape($arrayValidationPlace['error']['secondaryopenhoursfrom']); ?>
 						</small>
 					<?php } ?>
 			</div>
@@ -506,7 +508,7 @@
 		      <label for="name">Minutes open from <small>Optional</small></label>
 				<input 
 					value="<?php if(isset($arrayValidationPlace['primarminutesminutesfrom'])) { 
-							echo $arrayValidationPlace['secondaryopenminutesfrom']; 
+							echo html_escape($arrayValidationPlace['secondaryopenminutesfrom']); 
 						} ?>" 
 					type="text" 
 					id="secondaryopenminutesfrom" 
@@ -514,7 +516,7 @@
 					placeholder="Minutes open from"/>
 					<?php if(isset($arrayValidationPlace['error']['secondaryopenminutesfrom'])) { ?>
 						<small class="error">
-							<?php echo $arrayValidationPlace['error']['secondaryopenminutesfrom']; ?>
+							<?php echo html_ecape($arrayValidationPlace['error']['secondaryopenminutesfrom']); ?>
 						</small>
 					<?php } ?>
 			</div>
@@ -556,7 +558,7 @@
 		      <label for="name">Hours open until <small>Optional</small></label>
 				<input 
 					value="<?php if(isset($arrayValidationPlace['secondaryopenhoursuntil'])) { 
-							echo $arrayValidationPlace['secondaryopenhoursuntil']; 
+							echo html_escape($arrayValidationPlace['secondaryopenhoursuntil']); 
 						} ?>" 
 					type="text" 
 					id="secondaryopenhoursopenuntil" 
@@ -564,7 +566,7 @@
 					placeholder="Hours open until"/>
 					<?php if(isset($arrayValidationPlace['error']['secondaryopenhoursuntil'])) { ?>
 						<small class="error">
-							<?php echo $arrayValidationPlace['error']['secondaryopenhoursuntil']; ?>
+							<?php echo html_escape($arrayValidationPlace['error']['secondaryopenhoursuntil']); ?>
 						</small>
 					<?php } ?>
 				</div>
@@ -574,7 +576,7 @@
 		      <label for="name">Minutes open until <small>Optional</small></label>
 				<input 
 					value="<?php if(isset($arrayValidationPlace['primarminutesminutesuntil'])) { 
-							echo $arrayValidationPlace['secondaryopenminutesuntil']; 
+							echo html_escape($arrayValidationPlace['secondaryopenminutesuntil']); 
 						} ?>" 
 					type="text" 
 					id="secondaryopenminutesuntil" 
@@ -582,7 +584,7 @@
 					placeholder="Minutes open until"/>
 					<?php if(isset($arrayValidationPlace['error']['secondaryopenminutesuntil'])) { ?>
 						<small class="error">
-							<?php echo $arrayValidationPlace['error']['secondaryopenminutesuntil']; ?>
+							<?php echo html_escape($arrayValidationPlace['error']['secondaryopenminutesuntil']); ?>
 						</small>
 					<?php } ?>
 			</div>

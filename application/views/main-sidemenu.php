@@ -5,19 +5,19 @@
  * @date 09-08-2015
  *
  * Created: Sun 09-08-2015, 11:22:12 (:-0500)
- * Last modified: Sun 09-08-2015, 18:47:34 (-0500)
+ * Last modified: Sun 16-08-2015, 17:37:15 (-0500)
  */
 ?>
 <div class="information-wrap">
 <div class="information">
 
-	<p><strong><?php echo count($arrayResult); ?> Lugares:</strong></p>
+	<p><strong><?php echo count(html_escape($arrayResult)); ?> Lugares:</strong></p>
 	<ol>
 		<?php foreach($arrayResult as $singleResult) { ?>
 		<li>
 			<a href="<?php echo base_url('view/place/' 
-				. $singleResult['slug_places']); ?>">
-				<?php echo $singleResult['name']; ?>
+				. html_escape($singleResult['slug_places'])); ?>">
+				<?php echo html_escape($singleResult['name']); ?>
 			</a>
 		</li>
 		<?php } ?>

@@ -5,7 +5,7 @@
  * @date 07-08-2015
  *
  * Created: Fri 07-08-2015, 16:44:38 (:-0500)
- * Last modified: Fri 14-08-2015, 12:24:51 (-0500)
+ * Last modified: Sun 16-08-2015, 17:36:00 (-0500)
  */
 ?>
 <!doctype>
@@ -85,8 +85,8 @@
 						<li>
 							<a href="
 								<?php echo base_url('view/type/' 
-								. $singleMenuFoodType['slug_categories']); ?>">
-								<?php echo $singleMenuFoodType['category']; ?>
+								. html_escape($singleMenuFoodType['slug_categories'])); ?>">
+								<?php echo html_escape($singleMenuFoodType['category']); ?>
 							</a>
 						</li>
 					<?php } ?>
@@ -100,7 +100,7 @@
 						<li>
 							<a href="
 								<?php echo base_url('view/option/' 
-								. $singleMenuDietType['slug_options']); ?>">
+								. html_escape($singleMenuDietType['slug_options'])); ?>">
 								<?php echo $singleMenuDietType['option']; ?>
 							</a>
 						</li>
@@ -115,7 +115,7 @@
 						<li>
 							<a href="
 								<?php echo base_url('view/place/' 
-								. $singleMenuPlace['slug_places']); ?>">
+								. html_escape($singleMenuPlace['slug_places'])); ?>">
 								<?php echo $singleMenuPlace['name']; ?>
 							</a>
 						</li>

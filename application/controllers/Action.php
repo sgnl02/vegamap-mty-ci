@@ -5,7 +5,7 @@
  * @date 05-08-2015
  *
  * Created: Wed 05-08-2015, 18:45:51 (:-0500)
- * Last modified: Fri 14-08-2015, 18:36:58 (-0500)
+ * Last modified: Sun 16-08-2015, 16:36:11 (-0500)
  */
 ?>
 <?php
@@ -29,7 +29,8 @@ class Action extends CI_Controller {
 		$this->menu['arrayMenuDietType'] = $this->View_model->menuDietType();
 		$this->menu['arrayMenuPlaces'] = $this->View_model->menuPlaces();
 		$this->data['arrayResult'] = $this->View_model->place();
-		$this->data['arrayValidationPlace'] = $this->Action_model->validatePlace();
+		$this->Action_model->setValidationFields();
+		$this->data['arrayValidationPlace'] = $this->Action_model->getValidationFields();
 
 		$this->load->view('header', $this->menu);
 		$this->load->view('main-breadcrumb', $this->data);
