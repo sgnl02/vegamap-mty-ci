@@ -5,15 +5,13 @@
  * @date 09-08-2015
  *
  * Created: Sun 09-08-2015, 11:22:12 (:-0500)
- * Last modified: Sun 16-08-2015, 17:28:55 (-0500)
+ * Last modified: Sun 16-08-2015, 20:46:58 (-0500)
  */
 ?>
 
 <div class="information-wrap">
 <div class="information">
 	<p><strong>New place</strong></p>
-
-	<?php var_dump($arrayValidationPlace); ?>
 
 	<?php 
 	if(isset($arrayValidationPlace['latitude'])
